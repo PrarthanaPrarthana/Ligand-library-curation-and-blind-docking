@@ -62,3 +62,50 @@ This guide provides step-by-step instructions to prepare a ligand library using 
 2. **Create a New Conda Environment:**
    ```sh
    conda create -n myenv python=3.8
+
+3. **Activate the New Environment:**
+   ```sh
+   conda activate myenv
+
+4. **Add Conda-Forge Channel:**
+   ```sh
+   conda config --add channels conda-forge
+
+5. **Install Open Babel:**
+   ```sh
+   conda install openbabel
+
+6. **Verify the Installation:**
+   ```sh
+   obabel -V
+
+### 5. Use Open Babel 
+
+1. **Combine Ligand Libraries:**
+   ```sh
+   obabel input1.sdf input2.sdf input3.sdf -O output.sdf
+
+2. **Add Hydrogens:**
+   ```sh
+   obabel inputfile.sdf -O outputfile.sdf -h
+
+3. **Delete Hydrogens:**
+   ```sh
+   obabel inputfile.sdf -O outputfile.sdf -d
+
+4. **Convert 1D to 2D Molecules:**
+   ```sh
+   obabel 1Dstructures.smi -O 2Dstructures.sdf --gen2D
+
+5. **Generate 3D Molecules from 2D:**
+   ```sh
+   obabel 2Dstructures.sdf -O 3Dstructures.sdf --gen3D
+
+6. **Change File Format from SDF to PDBQT:**
+   ```sh
+   obabel inputfilename.sdf -O outputfilename.pdbqt
+
+   
+
+   
+   
