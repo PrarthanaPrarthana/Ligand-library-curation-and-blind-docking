@@ -1,0 +1,12 @@
+receptor = *name of the pdbqt file* 
+
+center_x = *insert the noted grid box values* 
+center_y = *insert the noted grid box values*
+center_z = *insert the noted grid box values*
+
+size_x = *insert the noted grid box values*
+size_y = *insert the noted grid box values*
+size_z =  *insert the noted grid box values*
+
+num_modes = 10
+energy_range = 4
