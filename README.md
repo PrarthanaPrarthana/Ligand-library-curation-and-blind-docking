@@ -105,7 +105,96 @@ This guide provides step-by-step instructions to prepare a ligand library using 
    ```sh
    obabel inputfilename.sdf -O outputfilename.pdbqt
 
+# Blind Docking on AutoDock Vina Using Perl
+
+## Prerequisites
+
+- [MGL Tools](http://mgltools.scripps.edu/)
+- [AutoDock Vina](http://vina.scripps.edu/index.html)
+- [OpenBabel](https://bit.ly/3eMgXZm)
+- [Perl](http://padre.perlide.org/)
+- Preprocessed receptor and ligands in PDBQT format
+
+# Installation Steps
+
+### 1. Install AutoDock Vina
+
+1. **Create a dedicated environment for AutoDock Vina:**
+   ```sh
+   conda create -n vina python=3
+   conda activate vina
+   conda config --env --add channels conda-forge
+
+2. **Download and build AutoDock Vina:**
+    ```sh
+    git clone https://github.com/ccsb-scripps/AutoDock-Vina
+    cd AutoDock-Vina/build/linux/release
+    make
+
+3. **Install the Vina package:**
+   ```sh
+   cd AutoDock-Vina
+   git checkout boost-python
+   cd build/python
+   python setup.py build install
+
+### 2. Grid Dimension for Blind Docking
+    - Ensure the grid box covers the entire molecule.
+    - Note the dimensions (x, y, z) and the center of the grid box.
+
+### 3. Install Perl
+1. **Download the zipped source code for Unix/Linux:**
+    ```sh
+    wget https://www.cpan.org/src/5.0/perl-5.28.1.tar.gz
+
+2. **Extract and install Perl:**
+   ```sh
+   tar -xzf perl-5.28.1.tar.gz
+   cd perl-5.28.1
+   ./Configure -de
+   make
+   make test
+   make install
+
+3. **Run a Perl script:**
+   - Write your Perl script in a text file with a .pl extension.
+   - Run the Perl script using:
+   ```sh
+   perl filename.pl
+
+
+# Docking Procedure
+
+### 1. Prepare Files
+   - Save the Vina_windows.pl script in your current working directory.
+
+### 2. Create a list of all ligands:
+    ```sh
+    dir /B > Ligand.txt
+- Remove any non-ligand PDBQT file names from Ligand.txt.
+
+### 3. Create a configuration file:
+    - Make a new text file called conf_vs.txt with the necessary parameters (number of modes, energy range, etc.).
+
+# 2. Run the Docking Script
+1. **Ensure all prerequisites are in the same directory:**
    
+3. **Execute the Perl script for docking:**
+    ```sh
+     perl Vina_windows.pl
+   
+4. **Input the ligand file name when prompted:**
+   - Provide Ligand.txt as the input file.
+     
+5. **Results:**
+   - AutoDock Vina results will be saved with the respective ligand root names.
+
+## Conclusion
+
+Follow the steps outlined in this guide to prepare your ligand library efficiently. Make sure to install all necessary software and verify installations before proceeding with Open Babel commands.
+
+Then follow the steps to perform blind docking using AutoDock Vina with a Perl script. Ensure all software and files are correctly installed and configured before running the docking procedure.
+
 
    
    
